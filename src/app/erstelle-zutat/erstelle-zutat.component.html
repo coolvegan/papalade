@@ -1,0 +1,45 @@
+<div class="card bg-dark text-white">
+  <div class="card-header"><h5>Erstelle eine neue Position</h5></div>
+  <form (ngSubmit)="save()">
+    <div class="card-body">
+      <div class="row mb-2">
+        <div class="col">
+          <label class="form-label">Name</label>
+          <input class="form-control" type="text" name="name" />
+        </div>
+        <div class="col">
+          <label class="form-label">Gewicht</label>
+          <input class="form-control" type="number" name="menge" />
+        </div>
+        <div class="col">
+          <label class="form-label">Mengenbezeichner</label>
+          <input class="form-control" type="text" name="mengenbezeichner" />
+        </div>
+        <div class="col">
+          <label class="form-label">Lagerort</label>
+          <input class="form-control" type="text" name="lagerort" />
+        </div>
+      </div>
+      <div class="row mb-2">
+        <div class="form-outline mb-4">
+          <label class="form-label" for="form6Example7">Notiz / Beschreibung</label>
+          <textarea class="form-control" id="form6Example7" rows="4"></textarea>
+        </div>
+      </div>
+      <div class="row mb-2">
+        <div class="col">
+          <label class="form-label">Lagerzeitpunkt</label>
+          <input
+            [value]="lagergegenstand.lagerzeitpunkt | date: 'yyyy-MM-dd'"
+            class="form-control"
+            type="date"
+            name="lagerzeitpunkt"
+          />
+        </div>
+      </div>
+    </div>
+    <div class="card-footer">
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+  </form>
+</div>
