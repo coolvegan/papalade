@@ -9,7 +9,7 @@ import { Zeugs } from '../../../Storage';
 })
 export class ZutatenComponent {
   zeugs : Lagergegenstand[] = Zeugs;
-  gegenstand : Lagergegenstand = {
+  lagergegenstand : Lagergegenstand = {
     id : 1,
     name : "Melonen Marmelade",
     beschreibung: "Frische Fruchtmarmelade",

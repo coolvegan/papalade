@@ -1,21 +1,23 @@
-<div class="list-group" *ngFor="let lagergegenstand of zeugs">
-  <div class="card text-center" style="width: 18rem">
-    <div class="card-header">
-      <h5 class="card-title">{{ lagergegenstand.name }}</h5>
-    </div>
-    <div class="card-body">
-      <small
-        ><b>Lagerzeitpunkt:</b>
-        {{ lagergegenstand.lagerzeitpunkt | date: "dd.MM.yyyy" }}</small
-      >
-      <p class="card-text">
-        Lagerort: {{ lagergegenstand.lagerort }} Gewicht:
-        {{ lagergegenstand.menge }} {{ lagergegenstand.mengenbezeichner }}
-      </p>
-      <small>Notiz: {{ lagergegenstand.beschreibung }}</small>
-    </div>
-    <div class="card-footer">
-      <a href="#" class="btn btn-secondary btn-sm">Bearbeiten</a>
+<div class="card-deck">
+  <div class="row align-items-center" *ngFor="let lagergegenstand of zeugs">
+    <div class="card text-center mx-auto mb-4" style="width: 80%">
+      <div class="card-header">
+        <h5 class="card-title">{{ lagergegenstand.name }}</h5>
+      </div>
+      <div class="card-body">
+        <small
+          ><b>Lagerzeitpunkt:</b>
+          {{ lagergegenstand.lagerzeitpunkt | date: "dd.MM.yyyy" }}</small
+        >
+        <p class="card-text">
+          Lagerort: {{ lagergegenstand.lagerort }} Gewicht:
+          {{ lagergegenstand.menge }} {{ lagergegenstand.mengenbezeichner }}
+        </p>
+        <small>Notiz: {{ lagergegenstand.beschreibung }}</small>
+      </div>
+      <div class="card-footer">
+        <a href="#" class="btn btn-secondary btn-sm">Bearbeiten</a>
+      </div>
     </div>
   </div>
 </div>

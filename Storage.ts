@@ -29,8 +29,8 @@ export const Zeugs: Lagergegenstand[] = [
   {
     id : 3,
     name : "Ananas Fruchtstücke",
-    beschreibung: ""
-    mengenbezeichner:"Gramm",
+    beschreibung: "",
+    mengenbezeichner: "Gramm",
     lagerort: "A3",
     lagerzeitpunktcode: "12.23",
     lagerortmengencode: "1000 A3",
