@@ -6,6 +6,7 @@ import { ErstelleZutatComponent } from "./erstelle-zutat/erstelle-zutat.componen
 const routes: Routes = [
   { path: "zutaten", component: ZutatenComponent },
   { path: "createZutat", component: ErstelleZutatComponent },
+  { path: "edit/:id", component: ErstelleZutatComponent },
   { path: "", redirectTo: "zutaten", pathMatch: "full" },
 ];
 

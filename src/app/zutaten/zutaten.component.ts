@@ -1,13 +1,13 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Lagergegenstand } from '../../../Lagergegenstand';
 import { Zeugs } from '../../../Storage';
-
+import { LgService } from '../../../lagergegenstand.service';
 @Component({
   selector: 'app-zutaten',
   templateUrl: './zutaten.component.html',
   styleUrl: './zutaten.component.css'
 })
-export class ZutatenComponent {
+export class ZutatenComponent implements OnInit {
   zeugs : Lagergegenstand[] = Zeugs;
   lagergegenstand : Lagergegenstand = {
     id : 1,
@@ -22,4 +22,12 @@ export class ZutatenComponent {
     lagerzeitpunkt: new Date()
   }
 
+  constructor(private lgService: LgService){}
+
+  ngOnInit(): void {
+      this.lgService.getLagergegenstaende().subscribe(result => {
+        console.log(result);
+        this.zeugs = result;
+      });
+  }
 }

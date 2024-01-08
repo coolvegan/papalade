@@ -1,29 +1,30 @@
 <div class="card bg-dark text-white">
   <div class="card-header"><h5>Erstelle eine neue Position</h5></div>
-  <form (ngSubmit)="save()">
+  <form [formGroup]="lgForm" (ngSubmit)="save()">
     <div class="card-body">
       <div class="row mb-2">
         <div class="col">
           <label class="form-label">Name</label>
-          <input class="form-control" type="text" name="name" />
+          <input class="form-control" type="text" name="name"
+          formControlName="name"/>
         </div>
         <div class="col">
           <label class="form-label">Gewicht</label>
-          <input class="form-control" type="number" name="menge" />
+          <input class="form-control" type="number" name="menge" formControlName="menge"/>
         </div>
         <div class="col">
           <label class="form-label">Mengenbezeichner</label>
-          <input class="form-control" type="text" name="mengenbezeichner" />
+          <input class="form-control" type="text" name="mengenbezeichner" formControlName="mengenbezeichner" />
         </div>
         <div class="col">
           <label class="form-label">Lagerort</label>
-          <input class="form-control" type="text" name="lagerort" />
+          <input class="form-control" type="text" name="lagerort" formControlName="lagerort" />
         </div>
       </div>
       <div class="row mb-2">
         <div class="form-outline mb-4">
-          <label class="form-label" for="form6Example7">Notiz / Beschreibung</label>
-          <textarea class="form-control" id="form6Example7" rows="4"></textarea>
+          <label class="form-label" for="formtext">Notiz / Beschreibung</label>
+          <textarea class="form-control" id="formtext" rows="4" formControlName="beschreibung"></textarea>
         </div>
       </div>
       <div class="row mb-2">
@@ -34,6 +35,7 @@
             class="form-control"
             type="date"
             name="lagerzeitpunkt"
+            (input)="dateChanged($event)"
           />
         </div>
       </div>
