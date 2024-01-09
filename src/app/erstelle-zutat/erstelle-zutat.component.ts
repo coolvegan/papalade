@@ -42,7 +42,7 @@ export class ErstelleZutatComponent implements OnInit{
 
   save() : void  {
     var lgc : LagergegenstandCreate = {
-      lagerzeitpunkt : this.lagergegenstand.lagerzeitpunkt,
+      lagerzeitpunkt : new Date(this.lagergegenstand.lagerzeitpunkt),
       name : this.lagergegenstand.name,
       beschreibung : this.lagergegenstand.beschreibung,
       mengenbezeichner : this.lagergegenstand.mengenbezeichner,

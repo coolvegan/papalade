@@ -9,7 +9,7 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
 })
 
 export class LgService {
-  lgUrl : string = "http://192.168.178.48:3000/lagergegenstand"
+  lgUrl : string = "http://localhost:5218/Lagergegenstand"
 
   constructor(private httpClient: HttpClient){}
 
@@ -27,7 +27,9 @@ export class LgService {
     const httpOptions = {
       headers: new HttpHeaders({
         'ApiKey':'ChangeMe',
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+      'Accept': 'application/json',
+      'Access-Control-Allow-Origin': '/'
       })
     }
     var response = this.httpClient.post<LagergegenstandCreate>(this.lgUrl,lg,httpOptions).subscribe();

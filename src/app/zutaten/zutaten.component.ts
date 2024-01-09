@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Lagergegenstand } from '../../../Lagergegenstand';
-import { Zeugs } from '../../../Storage';
 import { LgService } from '../../../lagergegenstand.service';
 @Component({
   selector: 'app-zutaten',
@@ -8,7 +7,7 @@ import { LgService } from '../../../lagergegenstand.service';
   styleUrl: './zutaten.component.css'
 })
 export class ZutatenComponent implements OnInit {
-  zeugs : Lagergegenstand[] = Zeugs;
+  zeugs : Lagergegenstand[] = [];
   lagergegenstand : Lagergegenstand = {
     id : 1,
     name : "Melonen Marmelade",
