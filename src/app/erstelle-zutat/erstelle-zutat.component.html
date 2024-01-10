@@ -31,6 +31,7 @@
         <div class="col">
           <label class="form-label">Lagerzeitpunkt</label>
           <input
+            formControlName="lagerzeitpunkt"
             [value]="lagergegenstand.lagerzeitpunkt | date: 'yyyy-MM-dd'"
             class="form-control"
             type="date"
@@ -41,7 +42,7 @@
       </div>
     </div>
     <div class="card-footer">
-      <button type="submit" class="btn btn-primary">Submit</button>
+      <button [disabled]="lgForm.invalid" type="submit" class="btn btn-primary">Submit</button>
     </div>
   </form>
 </div>

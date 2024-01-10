@@ -19,3 +19,9 @@ export interface LagergegenstandCreate{
   menge: number,
   lagerzeitpunkt: Date
 }
+
+export interface Lagerort{
+  id: number,
+  name: string,
+  beschreibung: string
+}

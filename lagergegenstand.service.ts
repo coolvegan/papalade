@@ -1,38 +1,51 @@
 import { Injectable } from "@angular/core";
-import { Lagergegenstand, LagergegenstandCreate } from "./Lagergegenstand";
+import { Lagergegenstand, LagergegenstandCreate, Lagerort } from "./Lagergegenstand";
 import { Zeugs } from "./Storage";
 import { Observable } from "rxjs";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root",
 })
-
 export class LgService {
-  lgUrl : string = "http://localhost:5218/Lagergegenstand"
+  lgUrl: string = "http://localhost:5218/Lagergegenstand";
+  lgOrt: string = "http://localhost:5218/Lagerort";
 
-  constructor(private httpClient: HttpClient){}
 
-  getLagergegenstaende() : Observable<Lagergegenstand[]> {
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'ApiKey':'ChangeMe'
-      })
-    }
-    var response = this.httpClient.get<Lagergegenstand[]>(this.lgUrl,httpOptions);
+  httpOptions = {
+    headers: new HttpHeaders({
+      "ApiKey": "ChangeMe",
+      "Content-Type": "application/json",
+      "Accept": "application/json",
+      "Access-Control-Allow-Origin": "*",
+    }),
+  };
+
+  constructor(private httpClient: HttpClient) {}
+
+  getLagergegenstaende(): Observable<Lagergegenstand[]> {
+    var response = this.httpClient.get<Lagergegenstand[]>(
+      this.lgUrl,
+      this.httpOptions,
+    );
     return response;
   }
 
-  createLagergegenstand(lg : LagergegenstandCreate){
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'ApiKey':'ChangeMe',
-        'Content-Type': 'application/json',
-      'Accept': 'application/json',
-      'Access-Control-Allow-Origin': '/'
-      })
-    }
-    var response = this.httpClient.post<LagergegenstandCreate>(this.lgUrl,lg,httpOptions).subscribe();
+  createLagergegenstand(lg: LagergegenstandCreate) {
+    var response = this.httpClient.post<LagergegenstandCreate>(
+      this.lgUrl,
+      lg,
+      this.httpOptions,
+    ).subscribe();
     return response;
   }
+
+  getLagerOrte(): Observable<Lagerort[]>{
+    var response = this.httpClient.get<Lagerort[]>(
+      this.lgOrt,
+      this.httpOptions
+    );
+    return response;
+  }
+
 }
