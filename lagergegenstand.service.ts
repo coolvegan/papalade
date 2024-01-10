@@ -1,27 +1,15 @@
 import { Injectable } from "@angular/core";
-import { Lagergegenstand, LagergegenstandCreate, Lagerort } from "./Lagergegenstand";
-import { Zeugs } from "./Storage";
+import { ServiceTemplate } from "./servicetemplate";
 import { Observable } from "rxjs";
-import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { Lagergegenstand } from "./Lagergegenstand";
+import { LagergegenstandCreate } from "./Lagergegenstand";
 
 @Injectable({
   providedIn: "root",
 })
-export class LgService {
-  lgUrl: string = "http://localhost:5218/Lagergegenstand";
-  lgOrt: string = "http://localhost:5218/Lagerort";
 
-
-  httpOptions = {
-    headers: new HttpHeaders({
-      "ApiKey": "ChangeMe",
-      "Content-Type": "application/json",
-      "Accept": "application/json",
-      "Access-Control-Allow-Origin": "*",
-    }),
-  };
-
-  constructor(private httpClient: HttpClient) {}
+export class LgService extends ServiceTemplate {
+  lgUrl: string = this.baseUrl + "Lagergegenstand";
 
   getLagergegenstaende(): Observable<Lagergegenstand[]> {
     var response = this.httpClient.get<Lagergegenstand[]>(
@@ -36,16 +24,7 @@ export class LgService {
       this.lgUrl,
       lg,
       this.httpOptions,
-    ).subscribe();
-    return response;
-  }
-
-  getLagerOrte(): Observable<Lagerort[]>{
-    var response = this.httpClient.get<Lagerort[]>(
-      this.lgOrt,
-      this.httpOptions
     );
     return response;
   }
-
 }

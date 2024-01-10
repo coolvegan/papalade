@@ -8,6 +8,7 @@ import { Router } from "@angular/router";
 import { ActivatedRoute } from "@angular/router";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { LgService } from "../../../lagergegenstand.service";
+import { LagerortService } from "../../../lagerort.service";
 
 @Component({
   selector: "app-erstelle-zutat",
@@ -50,6 +51,7 @@ export class ErstelleZutatComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private formBuilder: FormBuilder,
     private lgService: LgService,
+    private lagerortService: LagerortService,
   ) {
   }
 
@@ -69,7 +71,7 @@ export class ErstelleZutatComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.lgService.getLagerOrte().subscribe((result) => {
+    this.lagerortService.getLagerOrte().subscribe((result) => {
       console.log(result);
       result.forEach((element) => {
         if (this.pattern != "") {
@@ -78,6 +80,7 @@ export class ErstelleZutatComponent implements OnInit {
         this.pattern += element.name;
       });
     });
+
     console.log(this.pattern);
     this.lgForm = this.formBuilder.group({
       name: ["", Validators.required],
