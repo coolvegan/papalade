@@ -17,6 +17,7 @@ import { LagerortService } from "../../../lagerort.service";
 })
 export class ErstelleZutatComponent implements OnInit {
   pattern = "";
+  ortsMap = new Map<string, number>();
 
   lgForm: FormGroup = this.formBuilder.group({
     name: ["", Validators.required],
@@ -30,7 +31,7 @@ export class ErstelleZutatComponent implements OnInit {
       ]),
     ],
     menge: ["", Validators.required],
-    lagerzeitpunkt: ["", Validators.required],
+    lagerzeitpunkt: [new Date(), Validators.required],
   });
 
   lagergegenstand: Lagergegenstand = {
@@ -57,23 +58,34 @@ export class ErstelleZutatComponent implements OnInit {
 
   save(): void {
     var lagerzeitpunkt = new Date(this.lagergegenstand.lagerzeitpunkt);
+    var lagerortId = this.ortsMap.get(
+      this.lgForm.get("lagerort")?.value,
+    ) as number;
+
+
     var lgc: LagergegenstandCreate = {
       lagerzeitpunkt: lagerzeitpunkt,
       name: this.lgForm.get("name")?.value,
       beschreibung: this.lgForm.get("beschreibung")?.value,
       mengenbezeichner: this.lgForm.get("mengenbezeichner")?.value,
-      lagerortId: this.lgForm.get("lagerortId")?.value,
+      lagerortId: lagerortId,
       menge: this.lgForm.get("menge")?.value,
     };
-    console.log(lgc);
+
+    if (this.router.url == "/createZutat") {
     this.lgService.createLagergegenstand(lgc);
+    } else {
+    var id = Number(this.activatedRoute.snapshot.paramMap.get("id"));
+      this.lgService.updateLagergegenstand(id, lgc);
+    }
     this.router.navigate(["/zutaten"]);
   }
 
   ngOnInit(): void {
+    //Hole die erlaubten Ortskürzel
     this.lagerortService.getLagerOrte().subscribe((result) => {
-      console.log(result);
       result.forEach((element) => {
+        this.ortsMap.set(element.name, element.id);
         if (this.pattern != "") {
           this.pattern += "|";
         }
@@ -81,8 +93,8 @@ export class ErstelleZutatComponent implements OnInit {
       });
     });
 
-    console.log(this.pattern);
     this.lgForm = this.formBuilder.group({
+      id: [-1],
       name: ["", Validators.required],
       beschreibung: [""],
       mengenbezeichner: ["", Validators.required],
@@ -94,34 +106,32 @@ export class ErstelleZutatComponent implements OnInit {
         ]),
       ],
       menge: ["", Validators.required],
-      lagerzeitpunkt: ["", Validators.required],
+      lagerzeitpunkt: [new Date(), Validators.required],
     });
 
     if (this.router.url == "/createZutat") {
       return;
     }
     var id = Number(this.activatedRoute.snapshot.paramMap.get("id"));
-    var lgById = Zeugs.find((a) => a.id == id)!;
-    this.lagergegenstand = lgById;
-
-    this.lgForm.setValue({
-      id: this.lagergegenstand.id,
-      name: this.lagergegenstand.name,
-      beschreibung: this.lagergegenstand.beschreibung,
-      mengenbezeichner: this.lagergegenstand.mengenbezeichner,
-      lagerort: this.lagergegenstand.lagerort,
-      lagerzeitpunktcode: this.lagergegenstand.lagerzeitpunktcode,
-      lagerortmengencode: this.lagergegenstand.lagerortmengencode,
-      menge: this.lagergegenstand.menge,
-      lagerzeitpunkt: this.lagergegenstand.lagerzeitpunkt,
+    this.lgService.getLagergegenstaende().subscribe((result) => {
+      var data = result.find((a) => a.id == id);
+      if (typeof data == typeof (this.lagergegenstand) && data != undefined) {
+        this.lagergegenstand = data;
+        this.lgForm.setValue({
+          id: id,
+          name: this.lagergegenstand.name,
+          beschreibung: this.lagergegenstand.beschreibung,
+          mengenbezeichner: this.lagergegenstand.mengenbezeichner,
+          lagerort: this.lagergegenstand.lagerort,
+          menge: this.lagergegenstand.menge,
+          lagerzeitpunkt: this.lagergegenstand.lagerzeitpunkt,
+        });
+      }
     });
   }
 
   dateChanged(event: Event) {
     var val = (event.target as HTMLInputElement).value;
     this.lagergegenstand.lagerzeitpunkt = new Date(val);
-    this.lgForm.setValue({
-      lagerzeitpunkt: new Date(val),
-    });
   }
 }

@@ -19,12 +19,18 @@ export class LgService extends ServiceTemplate {
     return response;
   }
 
-  createLagergegenstand(lg: LagergegenstandCreate) {
-    var response = this.httpClient.post<LagergegenstandCreate>(
+  createLagergegenstand(lg: LagergegenstandCreate){
+    this.httpClient.post<LagergegenstandCreate>(
       this.lgUrl,
       lg,
       this.httpOptions,
-    );
-    return response;
+    ).subscribe();
+  }
+  updateLagergegenstand(id: number, lg: LagergegenstandCreate){
+    this.httpClient.put<LagergegenstandCreate>(
+      this.lgUrl+"/"+id,
+      lg,
+      this.httpOptions,
+    ).subscribe();
   }
 }

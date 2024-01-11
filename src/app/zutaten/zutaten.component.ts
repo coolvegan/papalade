@@ -25,7 +25,6 @@ export class ZutatenComponent implements OnInit {
 
   ngOnInit(): void {
       this.lgService.getLagergegenstaende().subscribe(result => {
-        console.log(result);
         this.zeugs = result;
       });
   }
