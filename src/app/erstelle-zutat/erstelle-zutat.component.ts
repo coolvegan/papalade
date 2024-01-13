@@ -3,7 +3,6 @@ import {
   Lagergegenstand,
   LagergegenstandCreate,
 } from "../../../Lagergegenstand";
-import { Zeugs } from "../../../Storage";
 import { Router } from "@angular/router";
 import { ActivatedRoute } from "@angular/router";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
@@ -16,6 +15,7 @@ import { LagerortService } from "../../../lagerort.service";
   styleUrl: "./erstelle-zutat.component.css",
 })
 export class ErstelleZutatComponent implements OnInit {
+  showSuccessMessage = false;
   pattern = "";
   ortsMap = new Map<string, number>();
 
@@ -78,7 +78,14 @@ export class ErstelleZutatComponent implements OnInit {
     var id = Number(this.activatedRoute.snapshot.paramMap.get("id"));
       this.lgService.updateLagergegenstand(id, lgc);
     }
-    this.router.navigate(["/zutaten"]);
+      // Setze showSuccessMessage auf true
+   this.showSuccessMessage = true;
+
+   // Verstecke die Nachricht nach einer kurzen Zeit
+   setTimeout(() => {
+      this.showSuccessMessage = false;
+      this.router.navigate(["/zutaten"]);
+   }, 3000); // 3000 Millisekunden = 3 Sekunden
   }
 
   ngOnInit(): void {

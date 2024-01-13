@@ -1,3 +1,7 @@
+<div *ngIf="showSuccessMessage" class="alert alert-success fade show">
+  Datensatz erfolgreich gespeichert
+</div>
+
 <div class="card bg-dark text-white">
   <div class="card-header"><h5>Erstelle eine neue Position</h5></div>
   <form [formGroup]="lgForm" (ngSubmit)="save()">
@@ -5,26 +9,60 @@
       <div class="row mb-2">
         <div class="col">
           <label class="form-label">Name</label>
-          <input class="form-control" type="text" name="name"
-          formControlName="name"/>
+          <input
+            class="form-control"
+            type="text"
+            name="name"
+            formControlName="name"
+          />
         </div>
         <div class="col">
           <label class="form-label">Gewicht</label>
-          <input class="form-control" type="number" name="menge" formControlName="menge"/>
+          <input
+            class="form-control"
+            type="number"
+            name="menge"
+            formControlName="menge"
+          />
         </div>
         <div class="col">
           <label class="form-label">Mengenbezeichner</label>
-          <input class="form-control" type="text" name="mengenbezeichner" formControlName="mengenbezeichner" />
+          <input
+            class="form-control"
+            list="mengenbezeichner"
+            type="text"
+            name="mengenbezeichner"
+            formControlName="mengenbezeichner"
+          />
+          <datalist id="mengenbezeichner">
+            <option>Gramm</option>
+            <option>Liter</option>
+            <option>Stück</option>
+          </datalist>
         </div>
         <div class="col">
           <label class="form-label">Lagerort</label>
-          <input class="form-control" type="text" name="lagerort" formControlName="lagerort" />
+          <input
+            id="lagerort"
+            list="orte"
+            class="form-control"
+            name="lagerort"
+            formControlName="lagerort"
+          />
+          <datalist id="orte">
+            <option *ngFor="let ort of pattern.split('|')" [value]="ort"></option>
+          </datalist>
         </div>
       </div>
       <div class="row mb-2">
         <div class="form-outline mb-4">
           <label class="form-label" for="formtext">Notiz / Beschreibung</label>
-          <textarea class="form-control" id="formtext" rows="4" formControlName="beschreibung"></textarea>
+          <textarea
+            class="form-control"
+            id="formtext"
+            rows="4"
+            formControlName="beschreibung"
+          ></textarea>
         </div>
       </div>
       <div class="row mb-2">
@@ -40,8 +78,11 @@
         </div>
       </div>
     </div>
+
     <div class="card-footer">
-      <button [disabled]="lgForm.invalid" type="submit" class="btn btn-primary">Submit</button>
+      <button [disabled]="lgForm.invalid" type="submit" class="btn btn-primary">
+        Submit
+      </button>
     </div>
   </form>
 </div>

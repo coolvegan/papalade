@@ -1,6 +1,18 @@
-<div class="card-deck">
-  <div class="row align-items-center" *ngFor="let lagergegenstand of zeugs">
-    <div class="card text-center mx-auto mb-4" style="width: 80%">
+<div class="container bg-light rounded" style="width:50%">
+  <div class="input-group pb-3 pt-3">
+    <input
+      type="suche"
+      class="form-control form-control-sm rounded"
+      placeholder="Suche"
+      aria-label="Suche"
+      aria-describedby="suche-addon"
+    />
+    <button type="button" class="btn btn-outline-primary btn-sm">suchen</button>
+  </div>
+</div>
+<div class="card-deck pt-4 row row-cols-1 row-cols-md-4 g-1">
+  <div class="row align-items-center pt-4" *ngFor="let lagergegenstand of zeugs">
+    <div class="card h-100 text-center mx-auto mb-4" style="width: 90%">
       <div class="card-header">
         <h5 class="card-title">{{ lagergegenstand.name }}</h5>
       </div>
@@ -16,7 +28,11 @@
         <small>Notiz: {{ lagergegenstand.beschreibung }}</small>
       </div>
       <div class="card-footer">
-        <a routerLink="/edit/{{lagergegenstand.id}}" class="btn btn-secondary btn-sm">Bearbeiten</a>
+        <a
+          routerLink="/edit/{{ lagergegenstand.id }}"
+          class="btn btn-secondary btn-sm"
+          >Bearbeiten</a
+        >
       </div>
     </div>
   </div>
