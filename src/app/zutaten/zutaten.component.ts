@@ -1,7 +1,7 @@
 import { Component, OnInit, inject } from "@angular/core";
-import { Lagergegenstand } from "../../../Lagergegenstand";
+import { Lagergegenstand, Lagerort } from "../../../Lagergegenstand";
 import { LgService } from "../../../lagergegenstand.service";
-
+import { LagerortService } from "../../../lagerort.service";
 
 @Component({
   selector: "app-zutaten",
@@ -9,6 +9,8 @@ import { LgService } from "../../../lagergegenstand.service";
   styleUrl: "./zutaten.component.css",
 })
 export class ZutatenComponent implements OnInit {
+  suchString = "";
+  orte: Lagerort[] = [];
   showSuccessMessage: boolean = false;
   zeugs: Lagergegenstand[] = [];
   lagergegenstand: Lagergegenstand = {
@@ -24,11 +26,30 @@ export class ZutatenComponent implements OnInit {
     lagerzeitpunkt: new Date(),
   };
 
-  constructor(private lgService: LgService) {}
+  constructor(private lgService: LgService, private lagerortService :LagerortService) {}
 
   ngOnInit(): void {
+    this.lagerortService.getLagerOrte().subscribe(
+      result => {
+        this.orte = result;
+      }
+    )
     this.lgService.getLagergegenstaende().subscribe((result) => {
       this.zeugs = result;
+    });
+  }
+
+  such(arg : string):void {
+    this.lgService.getLagergegenstaendeFuerOrt(arg).subscribe((result) => {
+      this.zeugs = result;
+      console.log(result);
+    });
+  }
+
+  suchText():void {
+    this.lgService.getLagergegenstaendeBySubString(this.suchString).subscribe((result) => {
+      this.zeugs = result;
+      console.log(result);
     });
   }
 }

@@ -19,6 +19,22 @@ export class LgService extends ServiceTemplate {
     return response;
   }
 
+  getLagergegenstaendeFuerOrt(ort:string): Observable<Lagergegenstand[]> {
+    var response = this.httpClient.get<Lagergegenstand[]>(
+      this.lgUrl+"?lagerOrt="+ort,
+      this.httpOptions,
+    );
+    return response;
+  }
+
+  getLagergegenstaendeBySubString(str:string): Observable<Lagergegenstand[]> {
+    var response = this.httpClient.get<Lagergegenstand[]>(
+      this.lgUrl+"?nameHasSubstring="+str,
+      this.httpOptions,
+    );
+    return response;
+  }
+
   createLagergegenstand(lg: LagergegenstandCreate){
     this.httpClient.post<LagergegenstandCreate>(
       this.lgUrl,
