@@ -12,12 +12,14 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
 import { TokenService } from '../../TokenService';
 import { AuthInterceptor } from '../authinterceptor';
+import { ExcelComponent } from './excel/excel.component';
 @NgModule({
   declarations: [
     AppComponent,
     ZutatenComponent,
     ErstelleZutatComponent,
     LoginComponent,
+    ExcelComponent,
   ],
   imports: [
     BrowserModule,

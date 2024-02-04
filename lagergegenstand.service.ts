@@ -1,52 +1,52 @@
-import { Injectable } from "@angular/core";
-import { ServiceTemplate } from "./servicetemplate";
-import { Observable } from "rxjs";
-import { Lagergegenstand } from "./Lagergegenstand";
-import { LagergegenstandCreate } from "./Lagergegenstand";
+import { Injectable } from '@angular/core';
+import { ServiceTemplate } from './servicetemplate';
+import { Observable } from 'rxjs';
+import { Lagergegenstand } from './Lagergegenstand';
+import { LagergegenstandCreate } from './Lagergegenstand';
 
 @Injectable({
-  providedIn: "root",
+  providedIn: 'root',
 })
-
 export class LgService extends ServiceTemplate {
-  lgUrl: string = this.baseUrl + "Lagergegenstand";
+  lgUrl: string = this.baseUrl + 'Lagergegenstand';
 
   getLagergegenstaende(): Observable<Lagergegenstand[]> {
     var response = this.httpClient.get<Lagergegenstand[]>(
       this.lgUrl,
-      this.httpOptions,
+      this.httpOptions
     );
     return response;
   }
 
-  getLagergegenstaendeFuerOrt(ort:string): Observable<Lagergegenstand[]> {
+  getLagergegenstaendeFuerOrt(ort: string): Observable<Lagergegenstand[]> {
     var response = this.httpClient.get<Lagergegenstand[]>(
-      this.lgUrl+"?lagerOrt="+ort,
-      this.httpOptions,
+      this.lgUrl + '?lagerOrt=' + ort,
+      this.httpOptions
     );
     return response;
   }
 
-  getLagergegenstaendeBySubString(str:string): Observable<Lagergegenstand[]> {
+  getLagergegenstaendeBySubString(str: string): Observable<Lagergegenstand[]> {
     var response = this.httpClient.get<Lagergegenstand[]>(
-      this.lgUrl+"?nameHasSubstring="+str,
-      this.httpOptions,
+      this.lgUrl + '?nameHasSubstring=' + str,
+      this.httpOptions
     );
     return response;
   }
 
-  createLagergegenstand(lg: LagergegenstandCreate){
-    this.httpClient.post<LagergegenstandCreate>(
-      this.lgUrl,
-      lg,
-      this.httpOptions,
-    ).subscribe();
+  createLagergegenstand(lg: LagergegenstandCreate) {
+    this.httpClient
+      .post<LagergegenstandCreate>(this.lgUrl, lg, this.httpOptions)
+      .subscribe();
   }
-  updateLagergegenstand(id: number, lg: LagergegenstandCreate){
-    this.httpClient.put<LagergegenstandCreate>(
-      this.lgUrl+"/"+id,
-      lg,
-      this.httpOptions,
-    ).subscribe();
+  updateLagergegenstand(id: number, lg: LagergegenstandCreate) {
+    this.httpClient
+      .put<LagergegenstandCreate>(this.lgUrl + '/' + id, lg, this.httpOptions)
+      .subscribe();
+  }
+  deleteLagergegenstand(id: number) {
+    this.httpClient
+      .delete<Lagergegenstand>(this.lgUrl + '/' + id, this.httpOptions)
+      .subscribe();
   }
 }

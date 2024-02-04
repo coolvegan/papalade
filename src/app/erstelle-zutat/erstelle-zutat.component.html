@@ -50,7 +50,10 @@
             formControlName="lagerort"
           />
           <datalist id="orte">
-            <option *ngFor="let ort of pattern.split('|')" [value]="ort"></option>
+            <option
+              *ngFor="let ort of pattern.split('|')"
+              [value]="ort"
+            ></option>
           </datalist>
         </div>
       </div>
@@ -69,7 +72,7 @@
         <div class="col">
           <label class="form-label">Lagerzeitpunkt</label>
           <input
-            [value]="lagergegenstand.lagerzeitpunkt | date: 'yyyy-MM-dd'"
+            [value]="lagergegenstand.lagerzeitpunkt | date : 'yyyy-MM-dd'"
             class="form-control"
             type="date"
             name="lagerzeitpunkt"
@@ -80,9 +83,26 @@
     </div>
 
     <div class="card-footer">
-      <button [disabled]="lgForm.invalid" type="submit" class="btn btn-primary">
-        Submit
-      </button>
+      <div class="row">
+        <div class="col-6">
+          <button
+            [disabled]="lgForm.invalid"
+            type="submit"
+            class="btn btn-primary"
+          >
+            Erstellen
+          </button>
+        </div>
+        <div class="col-6 ml-auto">
+          <button
+            *ngIf="lagergegenstand.id != -1"
+            (click)="delete()"
+            class="btn btn-danger"
+          >
+            Löschen
+          </button>
+        </div>
+      </div>
     </div>
   </form>
 </div>

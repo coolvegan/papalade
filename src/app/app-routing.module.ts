@@ -4,6 +4,7 @@ import { ZutatenComponent } from './zutaten/zutaten.component';
 import { ErstelleZutatComponent } from './erstelle-zutat/erstelle-zutat.component';
 import { LoginComponent } from './login/login.component';
 import { AuthGuard } from '../AuthGuard';
+import { ExcelComponent } from './excel/excel.component';
 
 const routes: Routes = [
   { path: 'zutaten', component: ZutatenComponent, canActivate: [AuthGuard] },
@@ -18,6 +19,7 @@ const routes: Routes = [
     canActivate: [AuthGuard],
   },
   { path: 'login', component: LoginComponent },
+  { path: 'excel', component: ExcelComponent },
   { path: '', redirectTo: 'zutaten', pathMatch: 'full' },
 ];
 
