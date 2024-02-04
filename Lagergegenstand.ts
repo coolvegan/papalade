@@ -25,3 +25,8 @@ export interface Lagerort{
   name: string,
   beschreibung: string
 }
+
+export interface LoginData{
+  username : string,
+  password : string
+}

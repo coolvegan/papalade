@@ -1,13 +1,24 @@
-import { NgModule } from "@angular/core";
-import { RouterModule, Routes } from "@angular/router";
-import { ZutatenComponent } from "./zutaten/zutaten.component";
-import { ErstelleZutatComponent } from "./erstelle-zutat/erstelle-zutat.component";
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+import { ZutatenComponent } from './zutaten/zutaten.component';
+import { ErstelleZutatComponent } from './erstelle-zutat/erstelle-zutat.component';
+import { LoginComponent } from './login/login.component';
+import { AuthGuard } from '../AuthGuard';
 
 const routes: Routes = [
-  { path: "zutaten", component: ZutatenComponent },
-  { path: "createZutat", component: ErstelleZutatComponent },
-  { path: "edit/:id", component: ErstelleZutatComponent },
-  { path: "", redirectTo: "zutaten", pathMatch: "full" },
+  { path: 'zutaten', component: ZutatenComponent, canActivate: [AuthGuard] },
+  {
+    path: 'createZutat',
+    component: ErstelleZutatComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'edit/:id',
+    component: ErstelleZutatComponent,
+    canActivate: [AuthGuard],
+  },
+  { path: 'login', component: LoginComponent },
+  { path: '', redirectTo: 'zutaten', pathMatch: 'full' },
 ];
 
 @NgModule({
