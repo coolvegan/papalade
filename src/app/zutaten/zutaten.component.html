@@ -1,6 +1,10 @@
 <div class="row equalheight pt-2 pb-2">
-  <span class="pb-2" *ngFor="let ort of orte" style="width: 4%">
-    <button (click)="such(ort.name)" type="button" class="btn btn-outline-primary btn-sm bg-dark">
+  <span class="pb-2" *ngFor="let ort of orte" style="width: 10%">
+    <button
+      (click)="such(ort.name)"
+      type="button"
+      class="btn btn-outline-primary btn-sm bg-dark"
+    >
       {{ ort.name }}
     </button>
   </span>
@@ -16,7 +20,13 @@
       [(ngModel)]="suchString"
       (input)="suchText()"
     />
-    <button (click)="suchText()" type="button" class="btn btn-outline-primary btn-sm">suchen</button>
+    <button
+      (click)="suchText()"
+      type="button"
+      class="btn btn-outline-primary btn-sm"
+    >
+      suchen
+    </button>
   </div>
 </div>
 
@@ -32,7 +42,7 @@
       <div class="card-body">
         <small
           ><b>Lagerzeitpunkt:</b>
-          {{ lagergegenstand.lagerzeitpunkt | date: "dd.MM.yyyy" }}</small
+          {{ lagergegenstand.lagerzeitpunkt | date : "dd.MM.yyyy" }}</small
         >
         <p class="card-text">
           Lagerort: {{ lagergegenstand.lagerort }} Gewicht:
