@@ -1,16 +1,17 @@
-<div class="row equalheight pt-2 pb-2">
-  <span class="pb-2" *ngFor="let ort of orte" style="width: 10%">
+<div class="row transparent-bg">
+  <h6 class="text-white">Lagerorte:</h6>
+  <span class="pb-4" *ngFor="let ort of orte" style="width: 11%">
     <button
       (click)="such(ort.name)"
       type="button"
-      class="btn btn-outline-primary btn-sm bg-dark"
+      class="btn btn-outline-primary btn-sm bg-light"
     >
       {{ ort.name }}
     </button>
   </span>
 </div>
 <div class="container bg-light rounded" style="width: 50%">
-  <div class="input-group pb-3 pt-3">
+  <div class="input-group pb-4 pt-4">
     <input
       type="suche"
       class="form-control form-control-sm rounded"
@@ -30,12 +31,12 @@
   </div>
 </div>
 
-<div class="card-deck pt-4 row row-cols-1 row-cols-md-4 g-1">
+<div class="card-deck pt-4 row row-cols-1 row-cols-md-5 g-1">
   <div
     class="row align-items-center pt-4"
     *ngFor="let lagergegenstand of zeugs"
   >
-    <div class="card h-100 text-center mx-auto mb-4" style="width: 90%">
+    <div class="card h-100 text-center mx-auto mb-4" style="width: 80%">
       <div class="card-header">
         <h5 class="card-title">{{ lagergegenstand.name }}</h5>
       </div>

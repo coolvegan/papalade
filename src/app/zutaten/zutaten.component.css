@@ -1,0 +1,9 @@
+.transparent-bg {
+  padding: 20px;
+  background-color: rgba(
+    41,
+    41,
+    167,
+    0.4
+  ); /* Hier kannst du die Transparenz anpassen (0.5 entspricht 50%) */
+}
