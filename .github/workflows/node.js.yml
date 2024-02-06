@@ -26,6 +26,18 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
+  
     - run: npm ci
     - run: npm install @angular/cli -g
     - run: ng build --configuration=production
+
+    - name: Auf den Server kopieren
+      uses: appleboy/scp-action@master
+      with:
+        host: ${{ secrets.SERVER }}
+        username: ${{ secrets.USER }}
+        key: ${{ secrets.PRIVATEKEY }}
+        source: "papalade/dist"
+        target: "/home/${{ secrets.USER }}"      
+
+    
