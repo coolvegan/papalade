@@ -30,6 +30,7 @@ jobs:
     - run: npm ci
     - run: npm install @angular/cli -g
     - run: ng build --configuration=production
+    - run: ls -lah
 
     - name: Auf den Server kopieren
       uses: appleboy/scp-action@master
