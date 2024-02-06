@@ -37,7 +37,7 @@ jobs:
         host: ${{ secrets.SERVER }}
         username: ${{ secrets.USER }}
         key: ${{ secrets.PRIVATEKEY }}
-        source: "papalade/dist"
+        source: "papalade/papalade/dist"
         target: "/home/${{ secrets.USER }}"      
 
     
