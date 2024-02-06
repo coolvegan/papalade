@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
@@ -6,10 +7,14 @@ import { Injectable } from '@angular/core';
 export class TokenService {
   private token: string = '';
 
-  constructor() {}
+  constructor(private router: Router) {}
 
   setToken(token: string): void {
     localStorage.setItem(this.token, token);
+    setTimeout(() => {
+      this.removeToken();
+      this.router.navigate(['/login']);
+    }, 60000);
   }
 
   getToken(): string {

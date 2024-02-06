@@ -8,7 +8,7 @@ import { Route, Router } from '@angular/router';
   styleUrl: './app.component.css',
 })
 export class AppComponent {
-  title = 'papalade';
+  title = 'barmelade';
 
   constructor(private tokenservice: TokenService, private router: Router) {}
 

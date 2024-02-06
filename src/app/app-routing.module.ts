@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { ZutatenComponent } from './zutaten/zutaten.component';
 import { ErstelleZutatComponent } from './erstelle-zutat/erstelle-zutat.component';
 import { LoginComponent } from './login/login.component';
-import { AuthGuard } from '../AuthGuard';
+import { AuthGuard } from '../authguard';
 import { ExcelComponent } from './excel/excel.component';
 
 const routes: Routes = [

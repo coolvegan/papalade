@@ -17,7 +17,7 @@ export class ServiceTemplate {
     'Access-Control-Allow-Origin': '*',
   });
 
-  protected baseUrl = 'http://localhost:5218/';
+  protected baseUrl = '/api/';
 
   protected httpOptions = {
     headers: this.headers,
