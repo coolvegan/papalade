@@ -27,5 +27,5 @@ jobs:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
     - run: npm ci
-    - uses: colbyhill21/angular-full-ci@v1.0
+    - run: npm install @angular/cli -g
     - run: ng build --configuration=production
