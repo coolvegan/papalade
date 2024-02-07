@@ -32,7 +32,7 @@ export class ExcelComponent implements OnInit {
       const downloadLink = document.createElement('a');
       downloadLink.href = URL.createObjectURL(blob);
       const datum = Date.now();
-      downloadLink.download = 'Essensliste.xlsx';
+      downloadLink.download = 'Inventurliste.xlsx';
 
       document.body.appendChild(downloadLink);
       downloadLink.click();

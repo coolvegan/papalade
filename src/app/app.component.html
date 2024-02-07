@@ -1,6 +1,13 @@
 <div class="p-4">
   <div class="mb-2 border rounded-3 transparent-bg">
     <div class="display-1 text-white">{{ title }}</div>
+    <button
+      class="logout"
+      *ngIf="isAuth(); &quot;justify-content-start&quot;"
+      (click)="logout()"
+    >
+      Logout
+    </button>
     <div
       *ngIf="isAuth()"
       class="d-flex align-items-start justify-content-start"

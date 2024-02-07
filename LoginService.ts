@@ -14,13 +14,9 @@ export class LoginService extends ServiceTemplate {
       .post<any>(this.lgLogin, lg, this.httpOptions)
       .pipe(
         tap((response: LoginData) => {
-          // Hier kannst du auf die erfolgreiche Antwort reagieren, wenn benötigt
-          console.log('Erfolgreich eingeloggt:', response);
           this.tokenservice.setToken(String(response));
         }),
         catchError((error) => {
-          // Hier wird die Fehlerbehandlung durchgeführt
-          console.error('Fehler bei der Anmeldung:', error);
           this.tokenservice.removeToken(); // Token entfernen, wenn ein Fehler auftritt
           return throwError(error); // Wirf den Fehler erneut, damit ihn Komponenten oder Dienste, die auf das Observable zugreifen, verarbeiten können
         })

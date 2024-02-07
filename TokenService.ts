@@ -11,10 +11,6 @@ export class TokenService {
 
   setToken(token: string): void {
     localStorage.setItem(this.token, token);
-    setTimeout(() => {
-      this.removeToken();
-      this.router.navigate(['/login']);
-    }, 60000);
   }
 
   getToken(): string {

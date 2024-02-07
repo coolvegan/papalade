@@ -7,3 +7,15 @@
   ); /* Hier kannst du die Transparenz anpassen (0.5 entspricht 50%) */
   padding: 20px;
 }
+
+.logout {
+  color :white;
+  position: absolute;
+  align-items: flex-end;
+  top: 30px;
+  right: 30px;
+  border-radius: 15px;
+  width: auto;
+  height: 50px;
+  background-color: rgba(48, 117, 255, 0.2); /
+}

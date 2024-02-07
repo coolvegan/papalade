@@ -7,7 +7,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class ExcelService extends ServiceTemplate {
-  lgOrt: string = this.baseUrl + 'word';
+  lgOrt: string = this.baseUrl + 'Excel';
 
   getExcel(): Observable<Excel> {
     this.headers.set('Security', this.tokenservice.getToken());
